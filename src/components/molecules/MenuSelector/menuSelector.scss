@@ -1,0 +1,16 @@
+.MuiFormGroup-root {
+    flex-direction:row!important;
+    padding:4px;
+    margin: 20px 0px;
+
+.MuiRadio-colorSecondary.Mui-disabled, .MuiFormControlLabel-label.Mui-disabled {
+    color:rgba(214, 208, 208, 0.26);
+    }
+}
+
+.MuiFormControlLabel-label.Mui-disabled { 
+    @media (max-width: 767px){ 
+      display: none; 
+    } 
+}
+   
