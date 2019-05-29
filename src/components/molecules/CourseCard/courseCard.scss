@@ -1,0 +1,20 @@
+.MuiCard-root {
+    .MuiCardContent-root {
+        text-align:left;
+    }
+    
+    .MuiCardActions-root {
+        padding:14px;
+
+        p {
+            position:relative;
+            left:5px;
+            top: 3px;
+        }
+
+        &.MuiCardActions-spacing{
+           // flex-direction:row-reverse;
+        }   
+
+    }
+}
