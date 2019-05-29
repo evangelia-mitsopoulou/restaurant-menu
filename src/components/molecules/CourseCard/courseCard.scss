@@ -1,4 +1,10 @@
 .MuiCard-root {
+    max-width: 345px;
+
+    .MuiCardMedia-root {
+        height:140px;
+    }
+
     .MuiCardContent-root {
         text-align:left;
     }
@@ -12,9 +18,11 @@
             top: 3px;
         }
 
-        &.MuiCardActions-spacing{
-           // flex-direction:row-reverse;
-        }   
+
+       svg:last-of-type {
+           margin-left:auto;
+       }
+         
 
     }
 }
