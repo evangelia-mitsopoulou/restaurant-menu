@@ -1,16 +1,28 @@
 import React from 'react';
 import './App.css';
-import CourseCard from './components/molecules/CourseCard/CourseCard.jsx';
-import MenuSelector  from './components/molecules/MenuSelector/MenuSelector';
+import { makeStyles } from '@material-ui/core/styles';
+import CoursesCardList from './components/organisms/CoursesCardList/CoursesCardList';
+import MenuSelector from './components/molecules/MenuSelector/MenuSelector';
+import NavigatorBar from './components/molecules/NavigatorBar/NavigatorBar';
+
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+  input: {
+    display: 'none',
+  },
+}));
 
 function App() {
+  const classes = useStyles();
+
   return (
     <div className="App">
-      <header className="App-header">
-          <MenuSelector></MenuSelector>
-          <CourseCard></CourseCard>
-      </header>
-    </div>
+      <MenuSelector></MenuSelector>
+      <CoursesCardList></CoursesCardList>
+      <NavigatorBar></NavigatorBar>
+    </div >
   );
 }
 
