@@ -9,20 +9,20 @@ import { Whatshot, Info } from '@material-ui/icons';
 import Typography from '@material-ui/core/Typography';
 
 
-function CourseCard() {
+function CourseCard(props) {
   
   return (
     <Card>
       <CardActionArea>
-       <CardMedia className= 'course-card__media' image='https://imagesvc.timeincapp.com/v3/mm/image?url=https%3A%2F%2Fcdn-image.foodandwine.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fmedium_2x%2Fpublic%2F200707-r-xl-grilled-vegetable-bruschetta.jpg%3Fitok%3DkP4cvjXP&w=1600&q=70'></CardMedia>
+       <CardMedia className= 'course-card__media' image={props.image}></CardMedia>
         <CardContent> 
-        <Typography gutterBottom variant="h5"> Grilled Vegetable Bruschetta</Typography>
-        <Typography gutterBottom variant="body2" color="textSecondary" component="p"> What could be more summery than grilled peppers and squash heaped on toasted country bread that's slathered with fresh basil pesto?</Typography>    
+        <Typography gutterBottom variant="h5"> {props.title}</Typography>
+        <Typography gutterBottom variant="body2" color="textSecondary" component="p"> {props.description}</Typography>    
         </CardContent> 
         </CardActionArea>
         <CardActions>
         <Info></Info>
-        <Typography gutterBottom variant="subtitle2" color="textSecondary" component="p"> milk, gluten</Typography>    
+        <Typography gutterBottom variant="subtitle2" color="textSecondary" component="p"> {props.allergy}</Typography>    
         <Whatshot></Whatshot>
         </CardActions>
     </Card>
