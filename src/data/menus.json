@@ -1,0 +1,27 @@
+[
+{
+   "menu": "Hors d'oeuvres" ,
+    "id" : 0
+},
+{
+    "menu": "Soup" ,
+     "id" : 1
+ },
+ {
+    "menu": "Fish" ,
+     "id" : 2
+ },
+ {
+    "menu": "Salad" ,
+     "id" : 2
+ },
+ {
+    "menu": "Main course" ,
+     "id" : 3
+ },
+ {
+    "menu": "Desser" ,
+     "id" : 4
+ }
+
+]
