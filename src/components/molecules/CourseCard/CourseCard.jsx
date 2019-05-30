@@ -16,7 +16,7 @@ function CourseCard(props) {
       <CardActionArea>
        <CardMedia className= 'course-card__media' image={props.image}></CardMedia>
         <CardContent> 
-        <Typography gutterBottom variant="h5"> {props.title}</Typography>
+        <Typography gutterBottom variant="h5"> {props.cardTitle}</Typography>
         <Typography gutterBottom variant="body2" color="textSecondary" component="p"> {props.description}</Typography>    
         </CardContent> 
         </CardActionArea>

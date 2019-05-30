@@ -1,4 +1,16 @@
 .MuiGrid-root.MuiGrid-container{
-        width:80%;
+        width:250px;
         margin: 0 auto;
+
+   @media (min-width: 599px) and (max-width:789px){ 
+                width:520px;
+        } 
+
+        @media (min-width: 789px) and (max-width:1280px){ 
+                width:750px;
+        } 
+
+        @media (min-width: 1280px) { 
+                width:1000px;
+        } 
 }  
