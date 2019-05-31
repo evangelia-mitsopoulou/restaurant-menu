@@ -9,24 +9,26 @@ import { Whatshot, Info } from '@material-ui/icons';
 import Typography from '@material-ui/core/Typography';
 
 
-function CourseCard(props) {
-  
-  return (
-    <Card>
-      <CardActionArea>
-       <CardMedia className= 'course-card__media' image={props.image}></CardMedia>
-        <CardContent> 
-        <Typography gutterBottom variant="h5"> {props.cardTitle}</Typography>
-        <Typography gutterBottom variant="body2" color="textSecondary" component="p"> {props.description}</Typography>    
-        </CardContent> 
-        </CardActionArea>
-        <CardActions>
-        <Info></Info>
-        <Typography gutterBottom variant="subtitle2" color="textSecondary" component="p"> {props.allergy}</Typography>    
-        <Whatshot></Whatshot>
-        </CardActions>
-    </Card>
-  );
+
+class CourseCard extends React.Component{
+  render(){
+    return (
+      <Card onClick={this.props.onClick}>
+        <CardActionArea>
+         <CardMedia className= 'course-card__media' image={this.props.image}></CardMedia>
+          <CardContent> 
+          <Typography gutterBottom variant="h5"> {this.props.cardTitle}</Typography>
+          <Typography gutterBottom variant="body2" color="textSecondary" component="p"> {this.props.description}</Typography>    
+          </CardContent> 
+          </CardActionArea>
+          <CardActions>
+          <Info></Info>
+          <Typography gutterBottom variant="subtitle2" color="textSecondary" component="p"> {this.props.allergy}</Typography>    
+          <Whatshot></Whatshot>
+          </CardActions>
+      </Card>
+    );
+  }
 }
 
 export default CourseCard;

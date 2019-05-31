@@ -5,25 +5,26 @@ import CoursesCardList from './components/organisms/CoursesCardList/CoursesCardL
 import MenuSelector from './components/molecules/MenuSelector/MenuSelector';
 import NavigatorBar from './components/molecules/NavigatorBar/NavigatorBar';
 
-const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1),
-  },
-  input: {
-    display: 'none',
-  },
-}));
+class App extends React.Component {
 
-function App() {
-  const classes = useStyles();
+  constructor(){
+    super();
+    this.state = {
+      activeMenu : 0,
+      selectedCourses:[],
+      allergyList:[]
+    }
+  }
 
-  return (
-    <div className="App">
-      <MenuSelector></MenuSelector>
-      <CoursesCardList></CoursesCardList>
-      <NavigatorBar></NavigatorBar>
-    </div >
-  );
+  render() {
+    return (
+      <div className="App">
+        <MenuSelector></MenuSelector>
+        <CoursesCardList></CoursesCardList>
+        <NavigatorBar></NavigatorBar>
+      </div >
+    );
+  }
 }
 
 export default App;

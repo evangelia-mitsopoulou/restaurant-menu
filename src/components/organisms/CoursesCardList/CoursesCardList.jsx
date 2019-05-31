@@ -6,8 +6,24 @@ import CoursesData from '../../../data/courses.json';
 
 class CoursesCardList extends React.Component {
 
-    render() {
+    constructor(props){
+        super(props)
+        this.handleClickCard = this.handleClickCard.bind(this)
+        this.state = {
+            activeMenu: 0
+        }  
+    }
 
+    handleClickCard(){
+        console.log('clicked Card');
+        /*this.setState((previousValue)=>{
+            this.setState = previousValue + 1;
+        });*/
+    }
+
+    render() {
+        
+        const filteredCourses =  CoursesData.filter(data=>data.courseType == this.state.activeMenu)
 
         return (
             <Grid
@@ -15,13 +31,14 @@ class CoursesCardList extends React.Component {
                 alignItems="center"
                 spacing={1}
             >
-            {CoursesData.map((response)=>{
+            {filteredCourses.map((response)=>{
                     return <CourseCard
                              key = {response.id}
                              image = {response.image}
                              cardTitle = {response.title}
                              description = {response.description}
                              allergy={response.allery}
+                             onClick= {this.handleClickCard}
                              />
                 })}
             </Grid>
