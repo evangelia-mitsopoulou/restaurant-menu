@@ -3,14 +3,22 @@ import './navigatorBar.scss';
 import Button from '@material-ui/core/Button';
 
 
-function NavigatorBar() {
-    return (
-        <div className='navigator-container'>
-            <Button variant="contained" color="primary">
-                Next step
-             </Button>
-        </div>
-    );
+class NavigatorBar extends React.Component {
+
+    handleClick(){
+        console.log('omg')
+    }
+
+    render(){
+        return (
+            <div className='navigator-container'>
+                <Button variant="contained" color="primary" onClick={this.handleClick}>
+                    Next step
+                 </Button>
+            </div>
+        );
+    }
+    
 }
 
 export default NavigatorBar;
