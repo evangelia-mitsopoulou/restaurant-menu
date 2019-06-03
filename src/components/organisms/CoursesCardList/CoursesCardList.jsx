@@ -4,13 +4,14 @@ import Grid from '@material-ui/core/Grid';
 import CourseCard from '../../molecules/CourseCard/CourseCard.jsx';
 import CoursesData from '../../../data/courses.json';
 
+
 class CoursesCardList extends React.Component {
 
     constructor(props) {
         super(props)
         this.handleClickCard = this.handleClickCard.bind(this)
         this.state = {
-            selectedCourses: []
+            selectedCourses: new Set()
         }
     }
 
@@ -18,7 +19,7 @@ class CoursesCardList extends React.Component {
         e.persist();
         let id = parseInt(e.currentTarget.id);
         this.setState( state => {    
-            const selectedCourses = state.selectedCourses.concat(id);          
+            const selectedCourses = state.selectedCourses.add(id);          
                 return {
                     selectedCourses
                 }
