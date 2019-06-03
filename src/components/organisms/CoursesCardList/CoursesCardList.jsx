@@ -19,19 +19,16 @@ class CoursesCardList extends React.Component {
         e.persist();
         let id = parseInt(e.currentTarget.id);
         this.setState( state => {    
-            const selectedCourses = state.selectedCourses.add(id);          
+            const selectedCourses = this.state.selectedCourses.add(id);          
                 return {
                     selectedCourses
                 }
             }
-        )
-
-       
+        )     
     };
-
+    
     render() {
-        console.log('state after set', this.state);
-        console.log('activeMenu', this.props);
+        
         const filteredCourses = CoursesData.filter(data => data.courseType == this.props.activeMenu)
 
         return (
@@ -48,7 +45,7 @@ class CoursesCardList extends React.Component {
                         cardTitle={response.title}
                         description={response.description}
                         allergy={response.allery}
-                        onClick={this.handleClickCard}
+                        onClick={this.props.onClick}
                     />
                 })}
             </Grid>
