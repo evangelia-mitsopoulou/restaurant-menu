@@ -25,15 +25,15 @@ class Results extends React.Component {
   render() {
 
     const selectedCourses = this.props.selectedCourses;
-    console.log('selected Course', selectedCourses);
     const values = [...selectedCourses.values()];
   
     return (
       <div className="results-container">
         <h1>Results</h1>
         {values.map((res, i) => {
-            const resultsData = CoursesData.filter(data => data.courseType == i && res.indexOf(data.id) !== -1);
+            const resultsData = CoursesData.filter(data => res.indexOf(data.id) !== -1);
             let flag = true;
+            if (resultsData.length > 0)
             return (
               <div key={i}>
                 <h3>{menus[resultsData[0].courseType]} </h3>
