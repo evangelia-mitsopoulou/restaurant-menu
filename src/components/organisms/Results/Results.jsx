@@ -25,6 +25,7 @@ class Results extends React.Component {
   render() {
 
     const selectedCourses = this.props.selectedCourses;
+    console.log('selected Course', selectedCourses);
     const values = [...selectedCourses.values()];
   
     return (
