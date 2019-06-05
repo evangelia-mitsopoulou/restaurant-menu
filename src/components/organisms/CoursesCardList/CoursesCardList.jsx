@@ -9,23 +9,7 @@ class CoursesCardList extends React.Component {
 
     constructor(props) {
         super(props)
-        this.handleClickCard = this.handleClickCard.bind(this)
-        this.state = {
-            selectedCourses: new Set()
-        }
     }
-
-    handleClickCard(e) {
-        e.persist();
-        let id = parseInt(e.currentTarget.id);
-        this.setState( state => {    
-            const selectedCourses = this.state.selectedCourses.add(id);          
-                return {
-                    selectedCourses
-                }
-            }
-        )     
-    };
     
     render() {
         
