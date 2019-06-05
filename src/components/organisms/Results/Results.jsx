@@ -3,25 +3,44 @@ import './results.scss';
 import CoursesData from '../../../data/courses.json';
 
 
-class Results extends React.Component{
+const menus = {
+  0: "Hors d'oeuvres",
+  1: "Soup",
+  2: "Fish",
+  3: "Salad",
+  4: "Main Course",
+  5: "Dessert"
+}
 
-  constructor(props){
-    super(props);  
-  } 
-  
-  render(){
-    const resultsIds = Array.from(this.props.selectedCourses);
-    console.log('resultsIds', resultsIds);
-    
-    const results = CoursesData.filter(data=>data.id in resultsIds);
-    console.log('results', results);
-    
+class Results extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  renderResultTitle = (item) => {
+    return (<span>{item.title}</span>);
+  }
+
+  render() {
+
+    const selectedCourses = this.props.selectedCourses;
+    const values = [...selectedCourses.values()];
+
     return (
-      <div>
-          <h1>Results</h1>
-          {results.map((res)=>{
-              return <p> {res.title}</p>
-          })}
+      <div className="results-container">
+        <h1>Results</h1>
+        {values.map((res, i) => {
+            const resultsData = CoursesData.filter(data => data.courseType == i && res.indexOf(data.id) !== -1);
+            return (
+              <div key={i}>
+                <h3>{menus[resultsData[0].courseType]} </h3>
+                {resultsData.map((item) => {
+                  return this.renderResultTitle(item);
+                })}
+              </div>
+            )
+        })}
       </div>
     );
   }
