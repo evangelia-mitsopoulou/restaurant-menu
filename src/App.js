@@ -23,7 +23,6 @@ class App extends React.Component {
   }
 
   handleNextButtonClick(e) {
-    console.log('handle next button click');
     e.persist();
     this.setState(prevState => {
       return {
@@ -42,12 +41,10 @@ class App extends React.Component {
     let id = parseInt(e.currentTarget.id),
       arr = [], previousArr = [], concatArr = [];
 
-    console.log('handle selected course items and id', id);
     arr.push(id);
 
     this.setState(prevState => {
       previousArr = prevState.selectedCourses.get(this.state.activeMenu);
-      console.log('previous Array', previousArr);
       concatArr = typeof previousArr !== 'undefined' ? arr.concat(previousArr) : arr;
       return {
         selectedCourses: this.state.selectedCourses.set(this.state.activeMenu, concatArr)
@@ -57,7 +54,6 @@ class App extends React.Component {
 
 
   render() {
-    console.log('this.state', this.state);
     return (
       <div className="App">
         <MenuSelector activeMenu={this.state.activeMenu}></MenuSelector>
