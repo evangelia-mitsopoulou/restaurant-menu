@@ -18,25 +18,27 @@ class Results extends React.Component {
     super(props);
   }
 
-  renderResultTitle = (item) => {
-    return (<span>{item.title}</span>);
+  renderResultTitle = (item,f) => {
+    return (<span key={item.id}>{item.title} {f ? ',' : ' ' } </span>);
   }
 
   render() {
 
     const selectedCourses = this.props.selectedCourses;
     const values = [...selectedCourses.values()];
-
+  
     return (
       <div className="results-container">
         <h1>Results</h1>
         {values.map((res, i) => {
             const resultsData = CoursesData.filter(data => data.courseType == i && res.indexOf(data.id) !== -1);
+            let flag = true;
             return (
               <div key={i}>
                 <h3>{menus[resultsData[0].courseType]} </h3>
-                {resultsData.map((item) => {
-                  return this.renderResultTitle(item);
+                {resultsData.map((item,k) => {
+                  if (k === resultsData.length-1) flag = false;
+                  return this.renderResultTitle(item,flag);
                 })}
               </div>
             )
