@@ -16,7 +16,8 @@ class App extends React.Component {
       activeMenu: 0,
       selectedCourses: new Map(),
       allergyList: [],
-      showResults: 0
+      showResults: 0,
+      activeButton: true
     }
     this.handleNextButtonClick = this.handleNextButtonClick.bind(this)
     this.handleSelectedCourseItems = this.handleSelectedCourseItems.bind(this)
@@ -28,7 +29,8 @@ class App extends React.Component {
       return {
         activeMenu: prevState.activeMenu + 1,
         selectedCourses: this.state.selectedCourses,
-        showResults: this.state.activeMenu !== MenuCategories.length - 1 ? 0 : 1
+        showResults: this.state.activeMenu !== MenuCategories.length - 1 ? 0 : 1,
+        activeButton: this.state.activeMenu === 3 ? false : true
       }
     });
   }
@@ -47,7 +49,8 @@ class App extends React.Component {
       previousArr = prevState.selectedCourses.get(this.state.activeMenu);
       concatArr = typeof previousArr !== 'undefined' ? arr.concat(previousArr) : arr;
       return {
-        selectedCourses: this.state.selectedCourses.set(this.state.activeMenu, concatArr)
+        selectedCourses: this.state.selectedCourses.set(this.state.activeMenu, concatArr),
+        activeButton: true
       }
     });
   }
@@ -59,7 +62,7 @@ class App extends React.Component {
         <MenuSelector activeMenu={this.state.activeMenu}></MenuSelector>
         <CoursesCardList onClick={this.handleSelectedCourseItems} selectedCourses={this.state.selectedCourses} activeMenu={this.state.activeMenu}></CoursesCardList>
         {this.state.showResults == 0 &&
-          <Button variant="contained" color="primary" onClick={this.handleNextButtonClick}>
+          <Button disabled={this.state.activeButton === false} variant="contained" color="primary" onClick={this.handleNextButtonClick}>
             Next step
         </Button>}
         {this.state.showResults == 1 &&
