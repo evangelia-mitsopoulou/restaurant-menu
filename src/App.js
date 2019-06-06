@@ -100,12 +100,14 @@ class App extends React.Component {
         <MenuSelector activeMenu={this.state.activeMenu}></MenuSelector>
         <CoursesCardList onClick={this.handleSelectedCourseItems} selectedCourses={this.state.selectedCourses} activeMenu={this.state.activeMenu}></CoursesCardList>
         {this.state.showResults == 0 &&
-          <Button disabled={this.state.activeButton === false} variant="contained" color="primary" onClick={this.handleNextButtonClick}>
-            Next step
-        </Button>}
+          //<Button disabled={this.state.activeButton === false} variant="contained" color="primary" onClick={this.handleNextButtonClick}>
+           // Next step
+        //</Button>
+       <NavigatorBar activeButton={this.state.activeButton} onClick= {this.handleNextButtonClick}></NavigatorBar>
+      }
         {this.state.showResults == 1 &&
            <div>
-              <h1>Results</h1>
+              <h1>Your Menu</h1>
               <AllergyInfo list={this.state.allergyList}></AllergyInfo>
               <Results selectedCourses={this.state.selectedCourses}></Results>
             </div>

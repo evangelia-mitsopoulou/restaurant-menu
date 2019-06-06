@@ -9,7 +9,7 @@ class NavigatorBar extends React.Component {
     render(){
         return (
             <div className='navigator-container'>
-                <Button variant="contained" color="primary">
+                <Button disabled={this.props.activeButton === false} variant="contained" color="primary" onClick={this.props.onClick}>
                     Next step
                  </Button>
             </div>

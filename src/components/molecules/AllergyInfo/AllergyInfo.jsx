@@ -5,13 +5,12 @@ import Button from '@material-ui/core/Button';
 
 function  AllergyInfo(props) {
       const list = Array.from(props.list);
-   
 
         return (
         <div className='allergy-container'>
-               <span><i> Allergy: </i></span>
+        <span><i> Allergic Ingredients: </i></span>
        { list.map((response) => {
-           return <span>{response}, </span>
+           return <span><i>{response}</i>, </span>
        })}
             </div>
         );
