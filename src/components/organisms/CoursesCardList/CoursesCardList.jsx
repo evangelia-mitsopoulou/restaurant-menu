@@ -30,6 +30,7 @@ class CoursesCardList extends React.Component {
                         description={response.description}
                         allergy={response.allery}
                         onClick={this.props.onClick}
+                        spicyLevel={response.spiceLevel}
                     />
                 })}
             </Grid>
