@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 class CourseCard extends React.Component{
   render(){
     return (
-      <Card onClick={this.props.onClick} id={this.props.id}>
+      <Card onClick={this.props.onClick} id={this.props.id} allergy={this.props.allergy}>
         <CardActionArea>
          <CardMedia className= 'course-card__media' image={this.props.image}></CardMedia>
           <CardContent> 
