@@ -7,6 +7,7 @@ import NavigatorBar from './components/molecules/NavigatorBar/NavigatorBar';
 import Button from '@material-ui/core/Button';
 import MenuCategories from './data/menus.json';
 import Results from './components/organisms/Results/Results';
+import AllergyInfo from './components/molecules/AllergyInfo/AllergyInfo';
 
 class App extends React.Component {
 
@@ -37,38 +38,18 @@ class App extends React.Component {
 
 
   handleSelectedCourseItems(e) {
+    
     e.persist();
     let id = parseInt(e.currentTarget.id),
-      arr = [], previousArr = [], concatArr = [];
-    let allergy = e.currentTarget.getAttribute('allergy');
-    console.log('allergy', allergy);
+        allergy = e.currentTarget.getAttribute('allergy'),
+        arr = [], previousArr = [], concatArr = [];
+      
 
-    //Array is of object type in javascript, the case where a food 
-    // is allergic in more than one ingredient
+    // allergic in more than one ingredient convert string -> array
 
-    switch (typeof allergy) {
-      case 'undefined':
-        console.log('in switch undefined');
-        break;
-      case 'object':
-        console.log('in switch object');
+    if (typeof allergy === 'string' && allergy.indexOf(',') !== -1) {
         allergy = allergy.split(',');
-        console.log('allergy now', allergy);
-        break;
-      case 'string':
-        console.log('in switch string');
-        if (allergy.indexOf(',') !== -1) {
-         allergy = allergy.split(',');
-          console.log('allergy splitted', allergy);
-        }
-        break;
-      default:
-        console.log('defaul');
     }
-
-
-    console.log('e.currentTarget', e.currentTarget);
-
 
     arr.push(id);
 
@@ -78,8 +59,6 @@ class App extends React.Component {
       return {
         selectedCourses: this.state.selectedCourses.set(this.state.activeMenu, concatArr),
         activeButton: true,
-        //allergyList: typeof prevState.allergyList !== 'undefined' ? prevState.allergy.concat(allergy) : allergy
-        //allergyList: (typeof prevState.allergyList !== 'undefined') ? (typeof allergy !== 'undefined') ? prevState.allergyList.add(allergy) : prevState.allergyList : allergy
         allergyList : this.setAllergyList(prevState, allergy)
       }
     });
@@ -111,6 +90,7 @@ class App extends React.Component {
     }
 
     return res;
+
   }
 
   render() {
@@ -124,7 +104,12 @@ class App extends React.Component {
             Next step
         </Button>}
         {this.state.showResults == 1 &&
-          <Results selectedCourses={this.state.selectedCourses}></Results>}
+           <div>
+              <h1>Results</h1>
+              <AllergyInfo list={this.state.allergyList}></AllergyInfo>
+              <Results selectedCourses={this.state.selectedCourses}></Results>
+            </div>
+          }
       </div >
     );
   }

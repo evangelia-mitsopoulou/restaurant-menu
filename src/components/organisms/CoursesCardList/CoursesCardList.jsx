@@ -8,8 +8,7 @@ import CoursesData from '../../../data/courses.json';
 class CoursesCardList extends React.Component {
 
     constructor(props) {
-        super(props)
-        this.myRef=React.createRef();
+        super(props);
     }
     
     render() {

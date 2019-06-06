@@ -29,7 +29,6 @@ class Results extends React.Component {
   
     return (
       <div className="results-container">
-        <h1>Results</h1>
         {values.map((res, i) => {
             const resultsData = CoursesData.filter(data => res.indexOf(data.id) !== -1);
             let flag = true;
