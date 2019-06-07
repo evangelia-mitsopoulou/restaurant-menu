@@ -59,27 +59,21 @@ class App extends React.Component {
   };
 
   setAllergyList(prevState, allergy) {
- 
-    console.log('previous state', prevState);
-
+  
     if (typeof allergy === 'string' && allergy.indexOf(',') !== -1) {
       allergy = allergy.split(',');
     }
 
-    // allergic in more than one ingredient convert string -> array
-
     let res;
 
-      if (typeof allergy !== 'undefined' && allergy.length > 0) {
-        if (typeof allergy === 'object') {
-          for (let ingredient of allergy) {
-            res = prevState.allergyList.add(ingredient);
-          }
+    if (typeof allergy === 'object') {
+        for (let ingredient of allergy) {
+          res = prevState.allergyList.add(ingredient);
         }
-        if (typeof allergy === 'string') res = prevState.allergyList.add(allergy);
-      } 
-    
+      }  
 
+    if (typeof allergy === 'string' && allergy.length > 1) res = prevState.allergyList.add(allergy);
+    
     if (typeof allergy === "string" && allergy.length === 0) {
       res = prevState.allergyList
     } 
