@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 
 
 class CourseCard extends React.Component{
+
   
   setSpicyIcons(array){
     let spicyArray;
@@ -31,11 +32,15 @@ class CourseCard extends React.Component{
     return spicyArray;
   }
 
+ componentWillMount(){
+   console.log('component will mount and props', this.props);
+   this.arr = new Array(this.props.spicyLevel);
+   this.spicyArray = this.setSpicyIcons(this.arr);
+ }
+
+
   render(){
 
-    const arr = new Array(this.props.spicyLevel);
-    const spicyArray = this.setSpicyIcons(arr);
-  
     return (
       <Card onClick={this.props.onClick} key={this.props.id} id={this.props.id} allergy={this.props.allergy}>
         <CardActionArea>
@@ -52,7 +57,7 @@ class CourseCard extends React.Component{
           <Typography gutterBottom variant="subtitle2" color="textSecondary" component="p"> {this.props.allergy}</Typography>    
           </div>
           <div className="spicy"> 
-            {spicyArray.map((e,i)=>{
+            {this.spicyArray.map((e,i)=>{
               return  <Whatshot key={i}></Whatshot> 
             })}    
             </div>  
