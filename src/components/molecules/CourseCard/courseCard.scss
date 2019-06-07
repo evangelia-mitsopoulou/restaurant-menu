@@ -1,3 +1,32 @@
+$lineHeight : 16px;
+$lineCount : 3;
+
+/* mixin for multiline */
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white){
+    overflow: hidden;
+    position: relative;
+    line-height: $lineHeight;
+    max-height: $lineHeight * $lineCount; 
+    text-align: justify;
+    margin-right: -1em;
+    padding-right: 1em;
+    &:before {
+      content: '...';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      width: 1em;
+      height: 1em;
+      margin-top: 0.2em;
+      background: $bgColor;
+    }
+  }
+
 .MuiPaper-root:hover,  .MuiPaper-root:focus, .MuiPaper-root:active {
     border:2px solid #c51162;
 }
@@ -16,8 +45,8 @@
 
     .MuiCardContent-root {
         text-align:left;
-        height:90px;
-        max-height:90px;
+        height:100px;
+        max-height:100px;
     }
     
     .MuiCardActions-root {
@@ -43,4 +72,8 @@
         margin-left:auto;
     }
     }
+
+    .block-with-text {
+        @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 5, $bgColor: white);  
+      }
 }

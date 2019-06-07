@@ -1,10 +1,8 @@
 import React from 'react';
 import './App.css';
-import { makeStyles } from '@material-ui/core/styles';
 import CoursesCardList from './components/organisms/CoursesCardList/CoursesCardList';
 import MenuSelector from './components/molecules/MenuSelector/MenuSelector';
 import NavigatorBar from './components/molecules/NavigatorBar/NavigatorBar';
-import Button from '@material-ui/core/Button';
 import MenuCategories from './data/menus.json';
 import Results from './components/organisms/Results/Results';
 import AllergyInfo from './components/molecules/AllergyInfo/AllergyInfo';
@@ -36,30 +34,29 @@ class App extends React.Component {
     });
   }
 
-
   handleSelectedCourseItems(e) {
-    
+
     e.persist();
     let id = parseInt(e.currentTarget.id),
-        allergy = e.currentTarget.getAttribute('allergy'),
-        arr = [], previousArr = [], concatArr = [];
-      
+      allergy = e.currentTarget.getAttribute('allergy'),
+      arr = [], previousArr = [], concatArr = [];
+
 
     // allergic in more than one ingredient convert string -> array
 
     if (typeof allergy === 'string' && allergy.indexOf(',') !== -1) {
-        allergy = allergy.split(',');
+      allergy = allergy.split(',');
     }
 
     arr.push(id);
 
-    this.setState(prevState => {
+    this.setState((prevState) => {
       previousArr = prevState.selectedCourses.get(this.state.activeMenu);
       concatArr = typeof previousArr !== 'undefined' ? arr.concat(previousArr) : arr;
       return {
         selectedCourses: this.state.selectedCourses.set(this.state.activeMenu, concatArr),
         activeButton: true,
-        allergyList : this.setAllergyList(prevState, allergy)
+        allergyList: this.setAllergyList(prevState, allergy)
       }
     });
   }
@@ -71,22 +68,22 @@ class App extends React.Component {
     if (typeof prevState !== 'undefined') {
       if (typeof allergy !== 'undefined' && allergy.length > 0) {
         if (typeof allergy === 'object') {
-          for (let ingredient of allergy){
+          for (let ingredient of allergy) {
             res = prevState.allergyList.add(ingredient);
-          }       
+          }
         }
-      if (typeof allergy === 'string') res = prevState.allergyList.add(allergy);
+        if (typeof allergy === 'string') res = prevState.allergyList.add(allergy);
       } else {
         res = prevState.allergyList;
       }
     } else {
       //it is the first time, there is no previous state and allergies
-      
+
       if (typeof allergy === "string" && allergy.length === 0) {
         res = prevState.allergyList
       } else {
         res = allergy;
-      }   
+      }
     }
 
     return res;
@@ -94,21 +91,20 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('this.state', this.state);
     return (
       <div className="App">
         <MenuSelector activeMenu={this.state.activeMenu}></MenuSelector>
         <CoursesCardList onClick={this.handleSelectedCourseItems} selectedCourses={this.state.selectedCourses} activeMenu={this.state.activeMenu}></CoursesCardList>
         {this.state.showResults == 0 &&
-       <NavigatorBar activeButton={this.state.activeButton} onClick= {this.handleNextButtonClick}></NavigatorBar>
-      }
+          <NavigatorBar activeButton={this.state.activeButton} onClick={this.handleNextButtonClick}></NavigatorBar>
+        }
         {this.state.showResults == 1 &&
-           <div>
-              <h1>Your Menu</h1>
-              <AllergyInfo list={this.state.allergyList}></AllergyInfo>
-              <Results selectedCourses={this.state.selectedCourses}></Results>
-            </div>
-          }
+          <div>
+            <h1>Your Menu</h1>
+            <AllergyInfo list={this.state.allergyList}></AllergyInfo>
+            <Results selectedCourses={this.state.selectedCourses}></Results>
+          </div>
+        }
       </div >
     );
   }

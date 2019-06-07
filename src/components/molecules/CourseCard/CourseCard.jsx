@@ -37,23 +37,23 @@ class CourseCard extends React.Component{
     const spicyArray = this.setSpicyIcons(arr);
   
     return (
-      <Card onClick={this.props.onClick} id={this.props.id} allergy={this.props.allergy}>
+      <Card onClick={this.props.onClick} key={this.props.id} id={this.props.id} allergy={this.props.allergy}>
         <CardActionArea>
          <CardMedia className= 'course-card__media' image={this.props.image}></CardMedia>
           <CardContent> 
           <Typography gutterBottom variant="h5"> {this.props.cardTitle}</Typography>
-          <Typography gutterBottom variant="body2" color="textSecondary" component="p"> {this.props.description}</Typography>    
+          <Typography className="block-with-text" gutterBottom variant="body2" color="textSecondary" component="p"> {this.props.description}</Typography>    
           </CardContent> 
           </CardActionArea>
           <CardActions>
-          <div class="allergy">
+          <div className="allergy">
           { this.props.allergy.length > 0 &&
           <Info></Info>}
           <Typography gutterBottom variant="subtitle2" color="textSecondary" component="p"> {this.props.allergy}</Typography>    
           </div>
-          <div class="spicy"> 
-            {spicyArray.map(()=>{
-              return  <Whatshot></Whatshot> 
+          <div className="spicy"> 
+            {spicyArray.map((e,i)=>{
+              return  <Whatshot key={i}></Whatshot> 
             })}    
             </div>  
           </CardActions>

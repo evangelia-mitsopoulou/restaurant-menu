@@ -5,7 +5,6 @@ import Button from '@material-ui/core/Button';
 
 class NavigatorBar extends React.Component {
 
-
     render(){
         return (
             <div className='navigator-container'>
@@ -14,8 +13,7 @@ class NavigatorBar extends React.Component {
                  </Button>
             </div>
         );
-    }
-    
+    }   
 }
 
 export default NavigatorBar;
