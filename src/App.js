@@ -62,15 +62,15 @@ class App extends React.Component {
 
     let res;
 
+    if (typeof allergy === 'string' && allergy.indexOf(',') !== -1) {
+      allergy = allergy.split(',');
+  }
+
     if (typeof allergy === 'object') {
         for (let ingredient of allergy) {
           res = prevState.allergyList.add(ingredient);
         }
       }  
-
-   if (typeof allergy === 'string' && allergy.indexOf(',') !== -1) {
-        allergy = allergy.split(',');
-    }
 
     if (typeof allergy === 'string' && allergy.length > 1) res = prevState.allergyList.add(allergy);
     
