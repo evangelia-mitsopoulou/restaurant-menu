@@ -8,13 +8,14 @@ import CoursesData from '../../../data/courses.json';
 class CoursesCardList extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props);   
     }
+
     
     render() {
-        
-        const filteredCourses = CoursesData.filter(data => data.courseType == this.props.activeMenu)
 
+        const filteredCourses = CoursesData.filter(data => data.courseType == this.props.activeMenu)
+        
         return (
             <Grid
                 container

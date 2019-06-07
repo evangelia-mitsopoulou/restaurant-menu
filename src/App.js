@@ -39,29 +39,35 @@ class App extends React.Component {
     e.persist();
     let id = parseInt(e.currentTarget.id),
       allergy = e.currentTarget.getAttribute('allergy'),
-      arr = [], previousArr = [], concatArr = [];
+      arr = [];
+
+    arr.push(id);
 
 
-    // allergic in more than one ingredient convert string -> array
+    this.setState((prevState) => {
+      return {
+        selectedCourses: this.setSelectedCourses(prevState, arr),
+        allergyList: this.setAllergyList(prevState, allergy),
+        activeButton:true
+        
+      }
+    });
+  }
+
+  setSelectedCourses(prevState, arr){
+    let previousArr = prevState.selectedCourses.get(this.state.activeMenu);
+    let concatArr = typeof previousArr !== 'undefined' ? arr.concat(previousArr) : arr; 
+    return this.state.selectedCourses.set(this.state.activeMenu, concatArr);
+  };
+
+  setAllergyList(prevState, allergy) {
+
 
     if (typeof allergy === 'string' && allergy.indexOf(',') !== -1) {
       allergy = allergy.split(',');
     }
 
-    arr.push(id);
-
-    this.setState((prevState) => {
-      previousArr = prevState.selectedCourses.get(this.state.activeMenu);
-      concatArr = typeof previousArr !== 'undefined' ? arr.concat(previousArr) : arr;
-      return {
-        selectedCourses: this.state.selectedCourses.set(this.state.activeMenu, concatArr),
-        activeButton: true,
-        allergyList: this.setAllergyList(prevState, allergy)
-      }
-    });
-  }
-
-  setAllergyList(prevState, allergy) {
+    // allergic in more than one ingredient convert string -> array
 
     let res;
 

@@ -12,12 +12,13 @@ import Typography from '@material-ui/core/Typography';
 
 class CourseCard extends React.Component{
 
- componentWillMount(){
-   this.arr = new Array(this.props.spicyLevel);
-   this.spicyArray = this.setSpicyIcons(this.arr);
-   this.allergy = this.props.allergy.length > 1 ? this.props.allergy.join(',') : this.props.allergy;
+  constructor(props){
+    super(props);
+    this.arr = new Array(this.props.spicyLevel);
+    this.spicyArray = this.setSpicyIcons(this.arr);
+    this.allergy = this.props.allergy.length > 1 ? this.props.allergy.join(',') : this.props.allergy;
   }
-
+  
  setSpicyIcons(array){
   let spicyArray;
   switch (array.length) {

@@ -16,6 +16,9 @@ class Results extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.selectedCourses = this.props.selectedCourses;
+    this.values = [...this.selectedCourses.values()];
   }
 
   renderResultTitle = (item,f) => {
@@ -23,13 +26,9 @@ class Results extends React.Component {
   }
 
   render() {
-
-    const selectedCourses = this.props.selectedCourses;
-    const values = [...selectedCourses.values()];
-  
     return (
       <div className="results-container">
-        {values.map((res, i) => {
+        {this.values.map((res, i) => {
             const resultsData = CoursesData.filter(data => res.indexOf(data.id) !== -1);
             let flag = true;
             if (resultsData.length > 0)

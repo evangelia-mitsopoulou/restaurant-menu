@@ -6,12 +6,8 @@ class AllergyInfo extends React.Component {
 
     constructor(props){
         super(props);
-    }
-
-    componentWillMount(){
         this.list = Array.from(this.props.list);
     }
-
 
     renderAllergyInfo= (item,f)=>{
         return (<span><i>{item}</i>{f ? ',' : ' '} </span>)

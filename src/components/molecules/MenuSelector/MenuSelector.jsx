@@ -9,7 +9,6 @@ import FormControl from '@material-ui/core/FormControl';
 function MenuSelector(props) {
   return (
     <FormControl component="fieldset">
-
     <RadioGroup>
       {MenuCategories.map((response,i)=>{
         return <FormControlLabel key={response.id} checked={response.id == props.activeMenu} disabled={response.id !== props.activeMenu} value={response.menu} control={<Radio />} label={response.menu} />
