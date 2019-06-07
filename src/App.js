@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import CoursesCardList from './components/organisms/CoursesCardList/CoursesCardList';
 import MenuSelector from './components/molecules/MenuSelector/MenuSelector';
 import NavigatorBar from './components/molecules/NavigatorBar/NavigatorBar';
@@ -59,10 +59,6 @@ class App extends React.Component {
   };
 
   setAllergyList(prevState, allergy) {
-  
-    if (typeof allergy === 'string' && allergy.indexOf(',') !== -1) {
-      allergy = allergy.split(',');
-    }
 
     let res;
 
@@ -71,6 +67,10 @@ class App extends React.Component {
           res = prevState.allergyList.add(ingredient);
         }
       }  
+
+   if (typeof allergy === 'string' && allergy.indexOf(',') !== -1) {
+        allergy = allergy.split(',');
+    }
 
     if (typeof allergy === 'string' && allergy.length > 1) res = prevState.allergyList.add(allergy);
     
@@ -84,7 +84,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <MenuSelector activeMenu={this.state.activeMenu}></MenuSelector>
         <CoursesCardList onClick={this.handleSelectedCourseItems} selectedCourses={this.state.selectedCourses} activeMenu={this.state.activeMenu}></CoursesCardList>
         {this.state.showResults == 0 &&
@@ -97,7 +97,7 @@ class App extends React.Component {
             <Results selectedCourses={this.state.selectedCourses}></Results>
           </div>
         }
-      </div >
+      </div>
     );
   }
 }
