@@ -43,13 +43,11 @@ class App extends React.Component {
 
     arr.push(id);
 
-
     this.setState((prevState) => {
       return {
         selectedCourses: this.setSelectedCourses(prevState, arr),
         allergyList: this.setAllergyList(prevState, allergy),
-        activeButton:true
-        
+        activeButton:true    
       }
     });
   }
@@ -61,7 +59,8 @@ class App extends React.Component {
   };
 
   setAllergyList(prevState, allergy) {
-
+ 
+    console.log('previous state', prevState);
 
     if (typeof allergy === 'string' && allergy.indexOf(',') !== -1) {
       allergy = allergy.split(',');
@@ -71,7 +70,6 @@ class App extends React.Component {
 
     let res;
 
-    if (typeof prevState !== 'undefined') {
       if (typeof allergy !== 'undefined' && allergy.length > 0) {
         if (typeof allergy === 'object') {
           for (let ingredient of allergy) {
@@ -79,18 +77,12 @@ class App extends React.Component {
           }
         }
         if (typeof allergy === 'string') res = prevState.allergyList.add(allergy);
-      } else {
-        res = prevState.allergyList;
-      }
-    } else {
-      //it is the first time, there is no previous state and allergies
+      } 
+    
 
-      if (typeof allergy === "string" && allergy.length === 0) {
-        res = prevState.allergyList
-      } else {
-        res = allergy;
-      }
-    }
+    if (typeof allergy === "string" && allergy.length === 0) {
+      res = prevState.allergyList
+    } 
 
     return res;
 
