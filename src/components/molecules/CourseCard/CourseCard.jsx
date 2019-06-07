@@ -12,32 +12,30 @@ import Typography from '@material-ui/core/Typography';
 
 class CourseCard extends React.Component{
 
-  
-  setSpicyIcons(array){
-    let spicyArray;
-    switch (array.length) {
-      case 1:
-        spicyArray = new Array(1).fill(1);
-        break;
-      case 2:
-      case 3:
-        spicyArray = new Array(2).fill(2);
-        break; 
-      case 4:
-        spicyArray = new Array(3).fill(3);
-        break;
-      default:
-        spicyArray = [];
-    }
-    return spicyArray;
-  }
-
  componentWillMount(){
-   console.log('component will mount and props', this.props);
    this.arr = new Array(this.props.spicyLevel);
    this.spicyArray = this.setSpicyIcons(this.arr);
- }
+   this.allergy = this.props.allergy.length > 1 ? this.props.allergy.join(',') : this.props.allergy;
+  }
 
+ setSpicyIcons(array){
+  let spicyArray;
+  switch (array.length) {
+    case 1:
+      spicyArray = new Array(1).fill(1);
+      break;
+    case 2:
+    case 3:
+      spicyArray = new Array(2).fill(2);
+      break; 
+    case 4:
+      spicyArray = new Array(3).fill(3);
+      break;
+    default:
+      spicyArray = [];
+  }
+  return spicyArray;
+}
 
   render(){
 
@@ -54,7 +52,7 @@ class CourseCard extends React.Component{
           <div className="allergy">
           { this.props.allergy.length > 0 &&
           <Info></Info>}
-          <Typography gutterBottom variant="subtitle2" color="textSecondary" component="p"> {this.props.allergy}</Typography>    
+          <Typography gutterBottom variant="subtitle2" color="textSecondary" component="p"> {this.allergy}</Typography>    
           </div>
           <div className="spicy"> 
             {this.spicyArray.map((e,i)=>{
