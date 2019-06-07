@@ -1,5 +1,5 @@
 import React from 'react';
-import './allergyInfo.scss';
+import styles from './allergyInfo.module.scss';
 
 
 class AllergyInfo extends React.Component {
@@ -10,13 +10,13 @@ class AllergyInfo extends React.Component {
     }
 
     renderAllergyInfo= (item,f)=>{
-        return (<span><i>{item}</i>{f ? ',' : ' '} </span>)
+        return (<span>{item}{f ? ',' : ' '} </span>)
     }
 
     render() {
         return (
-            <div className='allergy-container'>
-                <span><i> Allergic Ingredients: </i></span>
+            <div className={styles.allergyInfo}>
+                <span> Allergic Ingredients: </span>
                 {this.list.map((item,i) => {
                     let flag = true;
                     if (i === this.list.length -1) flag = false;

@@ -1,0 +1,11 @@
+@import '../../../styles/settings/colors.scss';
+
+.allergyInfo {
+    span {
+        font-weight:100;  
+    }
+    span:first-child {
+        font-style:italic;
+        color:$warning-color;
+    }
+} 
