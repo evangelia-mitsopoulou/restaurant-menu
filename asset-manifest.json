@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/restaurant-menu/static/css/main.c8ac48e2.chunk.css",
+    "main.js": "/restaurant-menu/static/js/main.9b23ea69.chunk.js",
+    "main.js.map": "/restaurant-menu/static/js/main.9b23ea69.chunk.js.map",
+    "runtime~main.js": "/restaurant-menu/static/js/runtime~main.07df0635.js",
+    "runtime~main.js.map": "/restaurant-menu/static/js/runtime~main.07df0635.js.map",
+    "static/js/2.065e03b4.chunk.js": "/restaurant-menu/static/js/2.065e03b4.chunk.js",
+    "static/js/2.065e03b4.chunk.js.map": "/restaurant-menu/static/js/2.065e03b4.chunk.js.map",
+    "index.html": "/restaurant-menu/index.html",
+    "precache-manifest.e026678eb5914219b446225f2417e422.js": "/restaurant-menu/precache-manifest.e026678eb5914219b446225f2417e422.js",
+    "service-worker.js": "/restaurant-menu/service-worker.js",
+    "static/css/main.c8ac48e2.chunk.css.map": "/restaurant-menu/static/css/main.c8ac48e2.chunk.css.map"
+  }
+}
