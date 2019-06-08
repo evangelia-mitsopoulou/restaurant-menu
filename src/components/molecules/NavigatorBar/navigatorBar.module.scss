@@ -2,7 +2,7 @@
 
 .navigator{
     width:100%;
-    background-color:rgba(0, 0, 0, 0.6);
+    background-color:$navigator-background-color;
     position:fixed;
     bottom:0px;
     height:50px;
@@ -18,10 +18,4 @@
             margin: 0; 
           } 
       }
-
-      button[class$='disabled']{
-          color:$inactive-font-color;
-          background-color:grey;
-      }
-
   }
