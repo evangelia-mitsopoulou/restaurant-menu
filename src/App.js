@@ -32,7 +32,9 @@ function App () {
     let id = parseInt(e.currentTarget.id),
       allergy = e.currentTarget.getAttribute('allergy'),
       arr = [];
-
+   
+    e.currentTarget.style.border = "2px solid #c51162";
+   
     arr.push(id);
 
     setSelectedCourses(calculateSelectedCourses(selectedCourses, arr));

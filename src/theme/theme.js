@@ -11,7 +11,7 @@ export default createMuiTheme({
         containedPrimary:{
             backgroundColor:'#f50057',
             "&:hover": {
-                color:'#35033a',
+                color:"#e8e0e0",
                 backgroundColor:'#f50057',
               }
         },
