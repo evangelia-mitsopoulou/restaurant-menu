@@ -1,5 +1,5 @@
 import React from 'react';
-import './results.scss';
+import styles from './results.module.scss';
 import CoursesData from '../../../data/courses.json';
 
 
@@ -27,7 +27,7 @@ class Results extends React.Component {
 
   render() {
     return (
-      <div className="results-container">
+      <div className={styles.results}>
         {this.values.map((res, i) => {
             const resultsData = CoursesData.filter(data => res.indexOf(data.id) !== -1);
             let flag = true;

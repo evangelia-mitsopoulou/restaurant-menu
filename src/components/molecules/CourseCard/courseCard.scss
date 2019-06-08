@@ -1,34 +1,11 @@
-$lineHeight : 16px;
-$lineCount : 3;
+@import "../../../styles/settings/typography.scss";
+@import "../../../styles/settings/colors.scss";
+@import "../../../styles/tools/mixins.scss";
 
-/* mixin for multiline */
-@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white){
-    overflow: hidden;
-    position: relative;
-    line-height: $lineHeight;
-    max-height: $lineHeight * $lineCount; 
-    text-align: justify;
-    margin-right: -1em;
-    padding-right: 1em;
-    &:before {
-      content: '...';
-      position: absolute;
-      right: 0;
-      bottom: 0;
-    }
-    &:after {
-      content: '';
-      position: absolute;
-      right: 0;
-      width: 1em;
-      height: 1em;
-      margin-top: 0.2em;
-      background: $bgColor;
-    }
-  }
 
+/* TODO: Material UI Theme*/
 .MuiPaper-root:hover,  .MuiPaper-root:focus, .MuiPaper-root:active {
-    border:2px solid #c51162;
+    border:2px solid $primary-color;
 }
 
 .MuiCard-root {
@@ -36,7 +13,6 @@ $lineCount : 3;
     height:100%;
     margin-right:10px;
     margin-bottom:10px;
-
 
     .MuiCardMedia-root {
         width:240px;
@@ -58,19 +34,17 @@ $lineCount : 3;
             top: 3px;
         }
 
-
        svg:last-of-type {
            margin-left:auto;
        }
          
-
-    .allergy {
+        .allergy {
         display:inline-flex;
-    }
+        }
 
-    .spicy {
-        margin-left:auto;
-    }
+        .spicy {
+            margin-left:auto;
+        }
     }
 
     .block-with-text {

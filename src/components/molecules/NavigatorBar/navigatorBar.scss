@@ -1,26 +1,26 @@
-.navigator-container{
+@import '../../../styles/settings/colors.scss';
+
+.navigator{
     width:100%;
     background-color:rgba(0, 0, 0, 0.6);
     position:fixed;
     bottom:0px;
     height:50px;
 
-    .MuiButton-root.MuiButton-containedPrimary{
+    button{
         position:fixed;
         bottom:0;
         right:10%;
         bottom:10px;
         margin: 0 30%; 
-        background-color:#c51162; //TODO: custom themre properly
-
+        
         @media (min-width: 599px){ 
             margin: 0; 
           } 
       }
 
-
-      button.Mui-disabled.MuiButton-containedPrimary.MuiButton-contained{
-          //color:grey;
+      button[class$='disabled']{
+          color:$inactive-font-color;
           background-color:grey;
       }
 
