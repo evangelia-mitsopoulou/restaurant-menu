@@ -47,9 +47,6 @@ function App () {
   };
 
   function calculateAllergyList(prevState, allergy) {
-    console.log('prevState', prevState);
-
-    console.log('allergyList', allergyList);
 
     let res;
 
@@ -79,7 +76,7 @@ function App () {
         <MenuSelector activeMenu={activeMenu}></MenuSelector>
         <CoursesCardList onClick={handleSelectedCourseItems} selectedCourses={selectedCourses} activeMenu={activeMenu}></CoursesCardList>
         {showResults === 0 &&
-          <NavigatorBar activeButton={activeButton} onClick={handleNextButtonClick}></NavigatorBar>
+          <NavigatorBar activeButton={activeButton} activeMenu={activeMenu} onClick={handleNextButtonClick}></NavigatorBar>
         }
         {showResults === 1 &&
           <div>
