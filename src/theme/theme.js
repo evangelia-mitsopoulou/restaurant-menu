@@ -44,6 +44,12 @@ export default createMuiTheme({
                 color:"rgba(214, 208, 208, 0.26)"
                      }
           }
+      },
+      MuiFormGroup : {
+          root :{
+              flexDirection : "row"
+          }
       }
+
     }
   });
