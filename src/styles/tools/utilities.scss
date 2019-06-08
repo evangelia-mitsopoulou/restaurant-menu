@@ -1,0 +1,6 @@
+@import 'mixins.scss';
+
+
+.block-with-text {
+    @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 5, $bgColor: white);  
+  }
