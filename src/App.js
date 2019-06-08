@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.scss';
+import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import CoursesCardList from './components/organisms/CoursesCardList/CoursesCardList';
 import MenuSelector from './components/molecules/MenuSelector/MenuSelector';
 import NavigatorBar from './components/molecules/NavigatorBar/NavigatorBar';
 import MenuCategories from './data/menus.json';
 import Results from './components/organisms/Results/Results';
 import AllergyInfo from './components/molecules/AllergyInfo/AllergyInfo';
+import theme from "./theme/theme";
 
 class App extends React.Component {
 
@@ -84,6 +86,7 @@ class App extends React.Component {
 
   render() {
     return (
+      <MuiThemeProvider theme={theme}> 
       <div>
         <MenuSelector activeMenu={this.state.activeMenu}></MenuSelector>
         <CoursesCardList onClick={this.handleSelectedCourseItems} selectedCourses={this.state.selectedCourses} activeMenu={this.state.activeMenu}></CoursesCardList>
@@ -98,6 +101,7 @@ class App extends React.Component {
           </div>
         }
       </div>
+      </MuiThemeProvider>
     );
   }
 }

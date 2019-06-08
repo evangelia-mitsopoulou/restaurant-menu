@@ -1,13 +1,3 @@
-@import "../../../styles/settings/typography.scss";
-@import "../../../styles/settings/colors.scss";
-@import "../../../styles/tools/mixins.scss";
-
-
-/* TODO: Material UI Theme*/
-.MuiPaper-root:hover,  .MuiPaper-root:focus, .MuiPaper-root:active {
-    border:2px solid $primary-color;
-}
-
 .MuiCard-root {
     max-width: 240px;
     height:100%;
