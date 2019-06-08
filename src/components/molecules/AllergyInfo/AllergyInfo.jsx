@@ -10,7 +10,7 @@ class AllergyInfo extends React.Component {
     }
 
     renderAllergyInfo= (item,f)=>{
-        return (<span>{item}{f ? ',' : ' '} </span>)
+        return (<span key={item}>{item}{f ? ',' : ' '} </span>)
     }
 
     render() {
