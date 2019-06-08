@@ -4,17 +4,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-`npm start`
+`npm start` or `yarn start`
 
 Runs the app in the development mode.<br> 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-`npm run build`
-
-Builds the app for production to the `build` folder.<br>
+The page will reload if you make edits. You will also see any lint errors in the console.
 
 
 ## Project Architecture 
@@ -32,15 +27,20 @@ The main folder structure consists at its first level (under src folder) consist
 
 ### Components
 
-The Components folder contains the main building blocks of our application and is divided into 3 subfolders. This categorization is following the principles of [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/). By implementing this mental model we set up the ground for a maintanble, reusable and extendible frontend architecture. 
+The Components folder contains the main building blocks of the application and is divided into 3 subfolders. This categorization is following the principles of [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/). By implementing this mental model we set up the ground for a maintainanble, reusable and extendible frontend architecture. <br/>
 
-[Material UI](https://material-ui.com/) is the most popular React UI framework. It was used extensively in the project to design UI components i.e. Cards, Button, RadioGroup for the menu selector. 
+Criteria of categorisation of building blocks in Atomic Design are the size and complexitiy of them. The smallest ones such as buttons are the atoms, the sligtlhy more complex ones that contain a few atoms within them are the molecules and the bigger ones are usually containers of multiple molecules. 
+
+In the project all different levels of components can be created by two different ways. Either they are made by Material UI or they are custom made by us. [Material UI](https://material-ui.com/) is the most popular React UI framework. It was used extensively in the project to design UI components i.e. Cards, Button, RadioGroup for the menu selector. 
  
 Most components are dummy, while application logic is contained only on the app component. They just consume props. 
 
-Naming Convention that was used 
+Naming Convention that was used in the project is that for .jsx files we use Pascalcase and for css we use camelCase.
 
 #### Atoms
+
+Atoms are often the most reusable building blocks. Many times within a project we see the same or similar atoms such as buttons, labels, icons etc. Often in companies, we see the same atoms being reused in more than one projects. This is normal and is part of the branding management. Unique Design System speaks for branding.
+If we collect all of our atoms in one folder and explicitily 
 
 Most of the Atoms are reused from Material UI. However i left on purpose the substructure of this folder in order to give a clue to other developers on what kind of components could be here. 
 
@@ -68,6 +68,10 @@ Conceptually theme is relatd with CSS. However it is placed in its own folder be
 ### Data
 
 In this folder we store our mocked data in json files. 
+
+### Services
+
+This folder will contain the actual services and API calls to the server. By using Fetch API the mocked json could be consumed here. 
 
 
 ## Technical Discussions
