@@ -6,7 +6,7 @@ In the project directory, you can run:
 
 `npm start`
 
-Runs the app in the development mode.<br>
+Runs the app in the development mode.<br> 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
@@ -23,11 +23,11 @@ The current project is built with React v.16.8.0, in node v.12.0 and with yarn v
 
 The main folder structure consists at its first level (under src folder) consists of the following:
 
- *components
- *data
- *styles
- *theme
- *services
+ * components
+ * data
+ * styles
+ * theme
+ * services
 
 
 ### Components - Atomic Design
@@ -36,17 +36,17 @@ The Components folder is divided into 3 subfolders. This categorization is follo
 
 
 
-### STYLES
+### Styles
 
 The folder structure under styles is following [ITCSS methodoloy](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/)
 
 
-### THEME
+### Theme
 
 Conceptually theme is relatd with CSS. However it is placed in its own folder because it is javascript. Within here we [customize Material UI](https://material-ui.com/customization/themes/) with our own theme. 
 
 
-###DATA
+### Data
 
 In this folder we store our mocked data in json files. 
 
