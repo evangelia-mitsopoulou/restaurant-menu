@@ -1,17 +1,18 @@
 @import "../../../styles/settings/typography.scss";
+@import "../../../styles/settings/breakpoints.scss";
 
 .MuiGrid-root {
     &.MuiGrid-container{
         width:$card-item-width;
         margin: 0 auto;
 
-        @media (min-width: 599px) and (max-width:789px){ 
+        @media (min-width: $small-medium) and (max-width:$medium){ 
                 width: $card-item-width *2 + 2*2;} 
 
-        @media (min-width: 789px) and (max-width:1280px){ 
+        @media (min-width: $medium) and (max-width:$large){ 
                 width:$card-item-width *3 +3*2;} 
 
-        @media (min-width: 1280px) { 
+        @media (min-width: $large) { 
                 width:$card-item-width *4 + 4*2;} 
         
         }  

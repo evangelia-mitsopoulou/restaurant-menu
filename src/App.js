@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState} from 'react';
 import './App.scss';
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import CoursesCardList from './components/organisms/CoursesCardList/CoursesCardList';
@@ -9,34 +9,24 @@ import Results from './components/organisms/Results/Results';
 import AllergyInfo from './components/molecules/AllergyInfo/AllergyInfo';
 import theme from "./theme/theme";
 
-class App extends React.Component {
+function App () {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeMenu: 0,
-      selectedCourses: new Map(),
-      allergyList: new Set(),
-      showResults: 0,
-      activeButton: true
-    }
-    this.handleNextButtonClick = this.handleNextButtonClick.bind(this)
-    this.handleSelectedCourseItems = this.handleSelectedCourseItems.bind(this)
-  }
+  const [activeMenu, setActiveMenu] = useState(0);
+  const [selectedCourses, setSelectedCourses] = useState(new Map());
+  const [allergyList, setAllergyList] = useState(new Set());
+  const [showResults, setShowResults] = useState(0);
+  const [activeButton, setActiveButton] = useState(true);
+  
 
-  handleNextButtonClick(e) {
+  function handleNextButtonClick(e) {
     e.persist();
-    this.setState(prevState => {
-      return {
-        activeMenu: prevState.activeMenu + 1,
-        selectedCourses: this.state.selectedCourses,
-        showResults: this.state.activeMenu !== MenuCategories.length - 1 ? 0 : 1,
-        activeButton: this.state.activeMenu === 3 ? false : true
-      }
-    });
+    setActiveMenu(activeMenu +1);
+    setSelectedCourses(selectedCourses);
+    setShowResults(activeMenu !== MenuCategories.length - 1 ? 0 : 1);
+    setActiveButton(activeMenu === 3 ? false : true);
   }
 
-  handleSelectedCourseItems(e) {
+  function handleSelectedCourseItems(e) {
 
     e.persist();
     let id = parseInt(e.currentTarget.id),
@@ -45,22 +35,21 @@ class App extends React.Component {
 
     arr.push(id);
 
-    this.setState((prevState) => {
-      return {
-        selectedCourses: this.setSelectedCourses(prevState, arr),
-        allergyList: this.setAllergyList(prevState, allergy),
-        activeButton:true    
-      }
-    });
+    setSelectedCourses(calculateSelectedCourses(selectedCourses, arr));
+    setAllergyList(calculateAllergyList(allergyList, allergy));
+    setActiveButton(true);
   }
 
-  setSelectedCourses(prevState, arr){
-    let previousArr = prevState.selectedCourses.get(this.state.activeMenu);
+  function calculateSelectedCourses(prevState, arr){
+    let previousArr = prevState.get(activeMenu);
     let concatArr = typeof previousArr !== 'undefined' ? arr.concat(previousArr) : arr; 
-    return this.state.selectedCourses.set(this.state.activeMenu, concatArr);
+    return prevState.set(activeMenu, concatArr);
   };
 
-  setAllergyList(prevState, allergy) {
+  function calculateAllergyList(prevState, allergy) {
+    console.log('prevState', prevState);
+
+    console.log('allergyList', allergyList);
 
     let res;
 
@@ -70,40 +59,39 @@ class App extends React.Component {
 
     if (typeof allergy === 'object') {
         for (let ingredient of allergy) {
-          res = prevState.allergyList.add(ingredient);
+          res = prevState.add(ingredient);
         }
       }  
 
-    if (typeof allergy === 'string' && allergy.length > 1) res = prevState.allergyList.add(allergy);
+    if (typeof allergy === 'string' && allergy.length > 1) res = prevState.add(allergy);
     
     if (typeof allergy === "string" && allergy.length === 0) {
-      res = prevState.allergyList
+      res = prevState;
     } 
 
     return res;
 
   }
 
-  render() {
     return (
       <MuiThemeProvider theme={theme}> 
       <div>
-        <MenuSelector activeMenu={this.state.activeMenu}></MenuSelector>
-        <CoursesCardList onClick={this.handleSelectedCourseItems} selectedCourses={this.state.selectedCourses} activeMenu={this.state.activeMenu}></CoursesCardList>
-        {this.state.showResults == 0 &&
-          <NavigatorBar activeButton={this.state.activeButton} onClick={this.handleNextButtonClick}></NavigatorBar>
+        <MenuSelector activeMenu={activeMenu}></MenuSelector>
+        <CoursesCardList onClick={handleSelectedCourseItems} selectedCourses={selectedCourses} activeMenu={activeMenu}></CoursesCardList>
+        {showResults === 0 &&
+          <NavigatorBar activeButton={activeButton} onClick={handleNextButtonClick}></NavigatorBar>
         }
-        {this.state.showResults == 1 &&
+        {showResults === 1 &&
           <div>
             <h1>Your Menu</h1>
-            <AllergyInfo list={this.state.allergyList}></AllergyInfo>
-            <Results selectedCourses={this.state.selectedCourses}></Results>
+            <AllergyInfo list={allergyList}></AllergyInfo>
+            <Results selectedCourses={selectedCourses}></Results>
           </div>
         }
       </div>
       </MuiThemeProvider>
     );
-  }
+  
 }
 
 export default App;
