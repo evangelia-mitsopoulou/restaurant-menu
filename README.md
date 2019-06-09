@@ -94,16 +94,25 @@ This folder will contain the actual services and API calls to the server. By usi
 
 ## Technical Discussions
 
+In this section i will draw the attention of some UX and Javascript issues which i took into consideration while developing the application. 
+
 ### Spicy Level Calculation
+
+Every course item has a specific level of spiceness. A very standard approach in food menus to visualise spiceness is via the pepper icons. I used the fire icon instead, cause there was no pepper icons available in Material UI. In order to specify how spicy is a food i decided to map the 4 different spicy Levels into 3 visual levels, one fire, two fires and three fires. Food items whose spicy Level is one have one fire icon in their card, food items whose spicy Level is 2 or 3 have 2 fire icons in their card and food items with spicy Level 4 have 3 fire icons in their card. Of course food items whose spicy Level is 0 don't have any fire icon at all. The mapping might be subjective, however i want to point out the need in such cases to automatize and visualize some important info to the users by means of infographics. Technically i implemented this by creating an Array with a lenght equals to the spiceness level (based on the mapping above). Then i filled the array with values equals to the spiciness Level in order to make it iterable and to render in the template the icons as many times as the length of the array.
+
 
 ### Set for Allergy Info
 
-### Map for Selected Courses
+The allergic ingredients that are included in the items that the user has selected in order to set up his/her menu are displayed in the results page. Often there is an overlapping on the ingredients between two food items. In such a case we woudn't need in the allergy info list in the results page to have a repetition of some ingredients and duplicates and triplicates. For this reason the most suitable data type from ES6 is the Set. It automatically removes any duplicate value if is being added to it. 
+
 
 ### Conditional Rendering (not Routing)
 
+No routing was implemented because it was not needed for the purposes of the specific project. We have one view which is the "Food Menu Selector". The transition to the results page is implemented with conditional rendering. In more complex projects a routing would have been implemented.
+
 ### Multiline ellipsis
 
+This is a very common design problem which is often emitted in development. It refers to the case where a very lengthy text exceeds the space it is supposed to cover and it overlaps with other html elements. In such cases we need to use the multiline ellipsis class on the text node. This class works as following: 3 dots (...) are displayed when the text exceeds a specific height. Such text-overflow issue is quite common and for that reason the css class for this is under styles/tools folder, which is shared accross the whole application.
 
 
 
