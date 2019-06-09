@@ -35,7 +35,7 @@ Criteria of categorisation of building blocks in Atomic Design are the size and 
 
 So mostly our custom components are molecules and organisms and within them we integrate either just Material UI atoms or just custom atoms or more often a mixture of them. The molecule that was used from Material UI is the Card. So the workflow is the following: First we categorize conceptually a building block/UI component that we want to develop into one of the 3 categories. Then we check if this UI component exists already in Material UI in order to reuse it. If it exists we reuse it and make any necessary css adjustments. If the UI compoment is quite custom and specific to the project then we build it from scratch.<br/>
  
-For every component there is folder under which there is a sass file and a jsx file. I strongly support the splitting of css formating from template and application logic. The idea of mixing css with javascript, as is done in the <i>styled components</i> approach is against the original nature of these technologies. So to style the components i used a hybrid solution of css modules and component namespacing. In this way the component classed are locally scoped. If there was a unit test for this component, its file could be also placed at this level. The naming convention that was adopted is PascalCase for jsx files and camelCases for sass files. 
+For every component there is folder under which there is a sass file and a jsx file. I strongly support the splitting of css formating from template and application logic. The idea of mixing css with javascript, as is done in the <i>styled components</i> approach is against the original nature of these technologies. So to style the components i used a hybrid solution of css modules and component namespacing. In this way the component classes are locally scoped. If there was a unit test for this component, its file could be also placed at this level. The naming convention that was adopted is PascalCase for jsx files and camelCases for sass files. 
 
 Most components are dummy, they don't have any application logic. They are just consumers of the props coming from the parent container. Their event handlers are assigned back to the parent components, whose event handlers are assigned back to grandparent App component. Sometimes some data coming from the parent should be manipulated before beeing rendered in the child's template and in these cases some small logic is being done locally on the component i.e. in Allergy Info (molecule) component we transform a Set into an Array in order to make it iterable and in Card (molecule) component there is some local logic regarding the caclulation of the spiciness level.
 
@@ -47,24 +47,42 @@ Based on what was explained above, scope of this folder is to hold all custom at
 
 #### Molecules
 
-These building blocks are more complex in their structure in comparison with the previous ones and act as wrapper elements of more than one atoms. They can contain either only Material UI ones, or only custom ones or a mixture of both. The AllergyInfo molecule is an example of a purely custom molecule. It contains a text title and the list of allergic ingredients. Navigator Bar is a hybrid one which within a custom div wrapper contains a material UI Button. This component visually refers to the bottom sticky opaque bar that contains the next button. The Menu Selector component, which is the top container which contains the course categories technically is a pure replication of a Material UI one. Lastly, the Course Card component is also a Material UI one, whose structure has been a bit modified by using other Material UI atoms. 
+These building blocks are more complex in their structure in comparison with the previous ones and act as wrapper elements of more than one atoms. They can contain either only Material UI ones, or only custom ones or a mixture of both. The AllergyInfo molecule is an example of a purely custom molecule. It contains a text title and the list of allergic ingredients. Navigator Bar is a hybrid one which within a custom div wrapper contains a material UI Button. This component visually refers to the bottom sticky opaque bar that contains the next button. The Menu Selector component, which is the top container which contains the course categories technically is a pure replication of a Material UI one. Lastly, the Course Card component is also a Material UI one, whose structure has been a bit modified by using other Material UI atoms. So far we described mostly the technical details of the templates/layout of the components. The methodology and architecture of their css will be more thoroughly described in a later section.
 
 
 
 #### Organisms
 
-These building blocks are containing more than one molecules within them. Card List and Results. 
+These building blocks are containing more than one molecules within them. Card List and Results are the two organisms designed for this project. Card list is a grid container that contains cards. Visually it is the main area of the screen in which the cards are displayed in a Grid system. The latter has been used from Material UI. A fluid grid design has been built, meaning for extra small screens there is one column layout, for small screen two column layout, for medium screen a 3 column layout and for large screen a 4 column layout. In the sass file of this component media queries and overriding of breakpoints have been used to achieve the fluid responsiveness. More specifically the width of the card item is calculated based on the following pattern:<br/>
+
+`width = card-item-width *X + X*2 + 4;` <br/> 
+
+where X is the number of columns. The "X*2" is the sum calculation of the pixels of the border of each card item and 4 is an extra space because on hover on cards an extra border is added and there should be enough space to keep the item on the same row. 
 
 
 ### Styles
 
-The folder structure under styles is following [ITCSS methodoloy](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/)
+The folder structure under styles is following [ITCSS methodoloy](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/). This methodology is very handy and enforces a maintanble and extenndible css architecture. It is a good design practice if we separate in css skin from structure.
+
+* settings
+* elements
+* tools  
+
+In the settings subfolder styles we store different two types of variables, skin-related and structure-related. In elements subfolder we store some generic css which is shared accross the whole application. For example 
+Under tools
 
 
 ### Theme
 
-Conceptually theme is relatd with CSS. However it is placed in its own folder because it is javascript. Within here we [customize Material UI](https://material-ui.com/customization/themes/) with our own theme. 
+Conceptually theme is related with CSS. However it is placed in its own folder because it is javascript. In theme.js file within the theme folder i [overwrote the default skin of Material UI](https://material-ui.com/customization/themes/) components that have been used in the project. Overrides here refer to both skin and structural css changes of Material UI components. If we want to modify the css of a Material UI Component by adding new css properties and not overriding existing ones we can write them directly in the sass files of the respective components. So in Theme we customize the css of Material UI components. The customisation of our own custom components is made directly in the sass files of these and depending on the type of change we want we can modify the css at different layers of the aformentioned ITCSS architecture.
 
+To further elaborate on the above and make a bit more clear how a customisation at Material UI components level can take place, let's use examples from the code to describe 
+
+* what is a skin css override on a Material UI component, 
+* what is a structural css override on a Material UI component and
+* what is an extension to the css of a Material UI component
+
+The color and background color properties of the containedPrimary of the MuiButton is a skin override because it has to do with colors. The flexDirection of MuiFormGroup is a structural css because it refers to layout. In MuiCardContent at CourseCard.scss the text-align property is an extension to the css of MuiCardContent.
 
 ### Data
 
@@ -72,16 +90,20 @@ In this folder we store our mocked data in json files.
 
 ### Services
 
-This folder will contain the actual services and API calls to the server. By using Fetch API the mocked json could be consumed here. 
+This folder will contain the actual services and API calls to the server. By using Fetch API the mocked json could be consumed here. For purposes of this project the raw json data were directly referenced within the components.
 
 
 ## Technical Discussions
 
 ### Spicy Level Calculation
+
 ### Set for Allergy Info
+
 ### Map for Selected Courses
-### Grid System
+
 ### Conditional Rendering (not Routing)
+
+### Multiline ellipsis
 
 
 
