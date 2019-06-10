@@ -2,19 +2,44 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Installation 
 
-In the project directory, you can run:
+
+You will need to have Node installed on your machine. This app was built with node v.12.0. <br/>
+
+You would preferably use yarn as package manager insteam of npm. <br/>
+
+React v.16.8 will be automatically installed in one of the next steps. This specific version is needed cause React Hooks have been used for State Management.
+
+
+Clone first locally in the root folder of your development server the repo. You can use use either https or ssh. 
+
+git clone https://github.com/evangelia-mitsopoulou/restaurant-menu.git or
+
+git clone git@github.com:evangelia-mitsopoulou/restaurant-menu.git
+
+More info on which approach to use and how you can find [here] (https://help.github.com/en/articles/which-remote-url-should-i-use).
+
+
+Once you have cloned the project locally in your project directory run
+
+`npm install` or `yarn install` to install all the dependencies of the project.
+
+
+Then in order to run the app in development mode run 
 
 `npm start` or `yarn start`
 
-Runs the app in the development mode.<br> 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser. If this port is being used by another application then you will be sked to use another port. 
 
-The page will reload if you make edits. You will also see any lint errors in the console.
+
+
+### Github Pages
+
+The project has been deployed in github pages and is running under https://evangelia-mitsopoulou.github.io/restaurant-menu/
 
 
 ## Project Architecture 
 
-The current project is built with React v.16.8.0, in node v.12.0 and with yarn v. 1.16.0.
+The current project is built with React v.16.8.0, in node v.12.0 and with yarn v. 1.16.0. 
 
 The main folder structure consists at its first level (under src folder) of the following:
 
