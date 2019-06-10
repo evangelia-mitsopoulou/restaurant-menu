@@ -16,7 +16,7 @@ git clone https://github.com/evangelia-mitsopoulou/restaurant-menu.git or
 
 git clone git@github.com:evangelia-mitsopoulou/restaurant-menu.git
 
-More info on which approach to use and how you can find [here] (https://help.github.com/en/articles/which-remote-url-should-i-use).
+More info on which approach to use and how you can find [here](https://help.github.com/en/articles/which-remote-url-should-i-use).
 
 
 Once you have cloned the project locally in your project directory run
